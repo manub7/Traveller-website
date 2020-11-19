@@ -3,6 +3,11 @@
     visibility: hidden;
 }
 
+.margin {
+
+    margin: 2.5%;
+}
+
 .allign-center {
     display: flex;
     flex-direction: column;

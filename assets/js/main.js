@@ -1,37 +1,53 @@
 
-   function showVenuesHTML(venue){
-       return `<h2>${venue.name}</h2>
-                <h3>Address:</h3>
-                <p>${venue.location.address}</p>
-                <p>${venue.location.city}</p>
-                <p>${venue.location.country}</p>`
-    };
+   function showVenuesHTML(venue,venueName) {
+            $("#venueTitle").html(`<div class="d-flex justify-content-center" id="titleDiv">
+                                 <h2 id="title" >Top recomended venues for ${venueName}</h2></div>`)
+            console.log(venue)
+
+            venue.forEach((item) => {
+                 console.log(item)
+                 $("#venues").append(`
+                                      <div class="container col-md-2 align-center margin" id="venue">
+                                      <h2>${item.name}</h2>
+                                      <h3>Address:</h3>
+                                      <p>${item.location.address}</p>
+                                      <p>${item.location.city}</p>
+                                      <p>${item.location.country}</p>
+                                      </div>`)
+                                 })
+                              };
 
     function showWeatherHTML(venueSet1,venueSet2) {
 
             var apiName = venueSet2.city.name;
             console.log(apiName)
-            $("#apiName").html(`<h2>${apiName}</h2>`)
+            $("#apiName").html(`<h2>${apiName} Weather Forcast </h2>`)
             var venueList = venueSet1.daily;
             console.log(venueList)
             /*var day = d.getDate()+ "/" + (d.getMonth()+1) + "/"+d.getFullYear();*/
-            venueList.forEach( function(date){
-                var temp = date.temp.day.toFixed(0);
-                var cond = date.weather[0].main;
-                var d = date.dt*1000;
-                console.log(d);
-                day = new Date(d);
-                var dayString = day.toLocaleDateString("en-GB",{year:"2-digit",month:"2-digit", day:"2-digit"});
-                console.log(dayString)
-                console.log(temp)
-                console.log(cond)
-                $("#weatherData").append(` <div>
+            /*While loop to iterate through API data items with a certain limit */
+             var i = 0;
+             do { 
+                              
+                    var date = venueList[i];
+                    i++;
+                    var temp = date.temp.day.toFixed(0);
+                    var cond = date.weather[0].main;
+                    var d = date.dt*1000;
+                    console.log(d);
+                    day = new Date(d);
+                    var dayString = day.toLocaleDateString('en-GB', { weekday: "short"});
+                    console.log(dayString)
+                    console.log(temp)
+                    console.log(cond)
+                    $("#weatherData").append(` <div class= "container col-md-2 align-center margin">
                                           <img src="https://openweathermap.org/img/wn/${date.weather[0].icon}@2x.png"/>
                                           <h2>${temp}°C</h2>
                                           <h2>${cond}</h2>
                                           <h2>${dayString}</h2>
                                           </div>`)
-            })
+            
+                } while(i<5)
     
         }
 
@@ -45,27 +61,19 @@
                  
             $.when(
             
-                $.getJSON(`https://api.foursquare.com/v2/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20191112&near=${cityName}&limit=3`)
+                $.getJSON(`https://api.foursquare.com/v2/venues/search?client_id=${clientId}&client_secret=${clientSecret}&v=20191112&near=${cityName}&limit=5`)
             
                 ).then (function(data){
                    
-                     
+                     console.log(data);
                      /* Access specific data from the object*/
                      var venues = data.response.venues;
-                    /*console.log(venues);*/
-                   
-                    /*Get data for each venue index and display it on the venues divs*/ 
+                     var venueName = data.response.geocode.feature.name
                     
-                    var venue1 = venues[0];
-                   /* console.log(venue1); */
-                    var venue2 = venues[1];
-                    var venue3 = venues[2];
-
+                                      
                     /* Call showVenuesHTML to display data in the div*/
-                     $("#venue1").html(showVenuesHTML(venue1));
-                     $("#venue2").html(showVenuesHTML(venue2));
-                     $("#venue3").html(showVenuesHTML(venue3));
-
+                     showVenuesHTML(venues,venueName);
+                     
                       } , function(errorResp) {
             if (cityName === "") {
                 $("#messageBox").html(
@@ -119,25 +127,33 @@
                                 console.log(newWeather)
                                 showWeatherHTML(newWeather,weatherInfo);
 
-                             }))} , function(errorResp) {
-            if (cityName === "") {
-                $("#messageBox").html(
-                    `<p>Please input destination</p>`);
+                             }, function(errorResp) {
+                                        if (cityName === "") {
+                                             $("#messageBox").html(`<p>Please input destination</p>`);
             
-            }else if(errorResp.status === 400) {
-                
-                $("#messageBox").html(
-                    `<p>No information found for "${cityName}", try again </p>`);
+                                        }else if(errorResp.status === 400) {
+                                            $("#messageBox").html(`<p>No information found for "${cityName}", try again </p>`);
                    
-            }
-            else {
+                                        }else {
+                                            $("#messageBox").html(`<p>Error: ${errorResp.responseJSON.message}</p>`);
+                                        }
+                                })
+                        )
+    
+                }, function(errorResp) {
+                    if (cityName === "") {
+                        $("#messageBox").html(`<p>Please input destination</p>`);
+            
+                    }else if(errorResp.status === 400) {
                 
-                $("#messageBox").html(
-                    `<p>Error: ${errorResp.responseJSON.message}</p>`);
-            }
+                        $("#messageBox").html(`<p>No information found for "${cityName}", try again </p>`);
+                   
+                    }else {
+                        $("#messageBox").html(`<p>Error: ${errorResp.responseJSON.message}</p>`);
+                    }
                       
-      })
-    }
+            })
+         }
 
 
    /* event handler*/
@@ -149,6 +165,7 @@
          e.preventDefault()
          /* Clear divs*/
          $("#weatherData").empty();
+         $("#venues").empty();
          $("#venue1").html("");
          $("#venue2").html("");
          $("#venue3").html("");

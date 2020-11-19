@@ -9,7 +9,10 @@
        
 </head>
 <body>
+    <div class="jumbotron">
      <header><h1>Traveller Website</h1></header>
+
+            
              <main>
                 <div class = "d-flex justify-content-center allign-center" id = "headerMain">
                     <h2>Where do you want to travel?</h2>
@@ -23,7 +26,7 @@
                 <div class="container allign-center">
                     <div id="messageBox"></div>
                 </div>
-                <div class="jumbotron allign-center" id = "apiDiv">
+                <div class="container allign-center" id = "apiDiv">
                 <section>
                     <div class="allign-center"id="apiName"></div>
                     <div class=" wetherDiv d-flex justify-content-center" id="weatherData">
@@ -32,20 +35,15 @@
 
                
                     <section class="veues" id = "venueSection">
-                        <div class="d-flex justify-content-center" id="titleDiv">
-                            <h2 id="title" >Top 3 recomended venues</h2>
-                        </div>
                         <div class="container">
-                            <div class="row">
-                                <div class="col-md-4" id="venue1"></div>
-                                <div class="col-md-4" id="venue2"></div>
-                                <div class="col-md-4" id="venue3"></div>
-                            </div>
+                            <div id="venueTitle"></div>
+                            <div class="row" id="venues">
+                                                           </div>
                         </div>
                     </section>
                </div>
                 <footer></footer>
-    
+    </div>
     <script
         src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
