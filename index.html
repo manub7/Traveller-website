@@ -5,40 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traveller website</title>
     <link rel="stylesheet" href="assets/css/main.css" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-       
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+               crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" 
+               integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" 
+               crossorigin="anonymous">
 </head>
 <body>
-    <div class="jumbotron">
-     <header><h1>Traveller Website</h1></header>
-
-            
-             <main>
-                <div class = "d-flex justify-content-center allign-center" id = "headerMain">
-                    <h2>Where do you want to travel?</h2>
-                        <form id="dataInput" >
-                             <input type="text" id="city" placeholder="Enter City" />
-                            <button id = "buttonS" type="submit">Get information </button>
-                        </form>
-                    </div>
-               </main>
-
-                <div class="container allign-center">
+     <div class="container-fluid" id="headerContainer">
+        <header>
+         <div class="container-fuid">
+            <div class="row">
+                <div class = "d-flex justify-content-center">
+                    <span id = "logo" >
+                        <i i class="fas fa-globe-europe"></i>
+                    </span>
+               
+                        <h1 id= "headerText">Traveller's Website</h1>
+                
+            </div>
+         </div>                
+         </header>    
+       <div class="container-fluid" id="mainContainer">
+                <main  id ="mainSection">
+                    <div class = "d-flex justify-content-center align-center" id = "headerMain">
+                        <h2 id= "qText">Where do you want to travel?</h2>
+                            <form id="dataInput" >
+                                <input type="text" id="city" placeholder="Enter City" />
+                                <button id = "buttonS" type="submit">Get information </button>
+                            </form>
+                        </div>
+                </main>
+        </div>  
+        
+        <div class="container align-center">
                     <div id="messageBox"></div>
                 </div>
-                <div class="container allign-center" id = "apiDiv">
-                <section>
-                    <div class="allign-center"id="apiName"></div>
-                    <div class=" wetherDiv d-flex justify-content-center" id="weatherData">
+        <div class="container-fluid align-center" id = "apiDiv">
+                <section class = "weatherSection">
+                    <div class="container">
+                        <div class="allign-center"id="apiName"></div>
+                        <div class = "container">
+                            <div class="row" id="weatherData"></div>
+                        </div>
                     </div>
                 </section>
 
                
-                    <section class="veues" id = "venueSection">
+                    <section class="veueSection" id = "venueSection">
                         <div class="container">
                             <div id="venueTitle"></div>
-                            <div class="row" id="venues">
-                                                           </div>
+                            <div class="container" id="venues"></div>
                         </div>
                     </section>
                </div>

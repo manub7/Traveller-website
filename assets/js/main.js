@@ -1,18 +1,18 @@
 
    function showVenuesHTML(venue,venueName) {
             $("#venueTitle").html(`<div class="d-flex justify-content-center" id="titleDiv">
-                                 <h2 id="title" >Top recomended venues for ${venueName}</h2></div>`)
-            console.log(venue)
+                                 <h2 id="title" >Top Recomended Venues for ${venueName}</h2></div>`)
+            
 
             venue.forEach((item) => {
                  console.log(item)
                  $("#venues").append(`
-                                      <div class="container col-md-2 align-center margin" id="venue">
-                                      <h2>${item.name}</h2>
-                                      <h3>Address:</h3>
+                                      <div class="container col-lg-12 align-center margin" id="venue">
+                                      <h3>${item.name}</h3>
+                                      <h4>Address:</h4>
                                       <p>${item.location.address}</p>
-                                      <p>${item.location.city}</p>
-                                      <p>${item.location.country}</p>
+                                      <h4>${item.location.city}</h4>
+                                      <h4>${item.location.country}</h4>
                                       </div>`)
                                  })
                               };
@@ -36,15 +36,15 @@
                     var d = date.dt*1000;
                     console.log(d);
                     day = new Date(d);
-                    var dayString = day.toLocaleDateString('en-GB', { weekday: "short"});
+                    var dayString = day.toLocaleDateString('en-GB', { weekday: "long"});
                     console.log(dayString)
                     console.log(temp)
                     console.log(cond)
-                    $("#weatherData").append(` <div class= "container col-md-2 align-center margin">
+                    $("#weatherData").append(` <div class= "d-flex col-lg-3 align-center margin">
                                           <img src="https://openweathermap.org/img/wn/${date.weather[0].icon}@2x.png"/>
-                                          <h2>${temp}°C</h2>
-                                          <h2>${cond}</h2>
-                                          <h2>${dayString}</h2>
+                                          <h3>${temp}°C</h3>
+                                          <h3>${cond}</h3>
+                                          <h3>${dayString}</h3>
                                           </div>`)
             
                 } while(i<5)
@@ -55,8 +55,8 @@
     function getVenueInformation(city) {
 
         /* Declaring  the variables necessary to access the API*/
-        var clientId ='PU3IY1PZEOOANTPSHKNMS5HFSMEGEQ1IAVJYGYM4YVZP3NGD';
-        var clientSecret ='0V21IXU0EETE3SZJGGCP4T4R13NUTBJ0LMI5WQY45IMDPEKY';
+        var clientId ='XHDCHJITLFTCRQZUQ21NIUT3UX1INFWQCGICF25USP0IHXZO';
+        var clientSecret ='4RPQ1PCFHSDS2YHADEMHE3VAYPTFQSHXL1IOP5IHTVODPKIC';
         var cityName=city;
                  
             $.when(
@@ -69,31 +69,55 @@
                      /* Access specific data from the object*/
                      var venues = data.response.venues;
                      var venueName = data.response.geocode.feature.name
-                    
+                     var venuesId = [""];
+                     var photoId = 1; 
+                     venues.forEach((e) => {
+                            venuesId.push(e.id);
+                            
+                     })                  
+                     venueId = venues[1].id;
                                       
                     /* Call showVenuesHTML to display data in the div*/
                      showVenuesHTML(venues,venueName);
-                     
+
+                     /* venuesId.forEach((id) => {
+
+                                var photoId=id;*/
+                                               
+                                $.when(
+                                   
+                                    $.getJSON(`https://api.foursquare.com/v2/venues//photos?venue_id=${venueId}&client_id=${clientId}&client_secret=${clientSecret}&v=20190425&group=venue&limit=10`)
+                                           
+                                ).then (function(data){
+                                    console.log(data);
+                                    console.log(photoId)
+
+                               /* var prefix = data.prefix;
+                               /* var suffix = data.suffix;
+                               /* var size = cap36;*/
+
+                             })
+                       /* })*/
+                                      
+                    /* Call showVenuesHTML to display data in the div*/
+                   /*  showVenuesHTML(venues,venueName); */
+
                       } , function(errorResp) {
-            if (cityName === "") {
-                $("#messageBox").html(
-                    `<p>Please input destination</p>`);
-            
-            }else if(errorResp.status === 400) {
-                
-                $("#messageBox").html(
-                    `<p>No information found for "${cityName}", try again </p>`);
+                            if(errorResp.status === 400) { $("#messageBox").append(`<p>Venue Error: No venue information found for "${cityName}", please try again </p>`);
+                                                           $("#weatherSection").empty();
+                                                           $("#venueSection").empty();
+                                                           $("#apiName").empty();
                    
-            }
-            else {
-                
-                $("#messageBox").html(
-                    `<p>Error: ${errorResp.responseJSON.message}</p>`);
-            }
+                            }else { $("#messageBox").append(`<p>Venue Error: ${errorResp.responseJSON.message},please try again</p>`);
+                                    $("#weatherSection").empty();
+                                    $("#venueSection").empty();
+                                    $("#apiName").empty();    
+                                                                
+                                            }
                       
-      }
-    )
-};
+                        }
+                    )
+                };
 
 /* Get Weather information function */
 
@@ -116,7 +140,7 @@
                      console.log(coord, lat, lon)
                      
                      
-
+                    /*  Fetch venu data from API*/
                     $.when(
             
                              $.getJSON(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=metric&appid=${apiKey}` ).
@@ -128,28 +152,23 @@
                                 showWeatherHTML(newWeather,weatherInfo);
 
                              }, function(errorResp) {
-                                        if (cityName === "") {
-                                             $("#messageBox").html(`<p>Please input destination</p>`);
-            
-                                        }else if(errorResp.status === 400) {
-                                            $("#messageBox").html(`<p>No information found for "${cityName}", try again </p>`);
+                                                
+                                        if(errorResp.status === 400) {
+                                            $("#messageBox").append(`<p>Weather Error: No weather information found for "${cityName}",please try again </p>`);
                    
                                         }else {
-                                            $("#messageBox").html(`<p>Error: ${errorResp.responseJSON.message}</p>`);
+                                            $("#messageBox").append(`<p>Weather Error: ${errorResp.responseJSON.message},please try again</p>`);
                                         }
                                 })
                         )
     
                 }, function(errorResp) {
-                    if (cityName === "") {
-                        $("#messageBox").html(`<p>Please input destination</p>`);
-            
-                    }else if(errorResp.status === 400) {
+                    if(errorResp.status === 400) {
                 
-                        $("#messageBox").html(`<p>No information found for "${cityName}", try again </p>`);
+                        $("#messageBox").append(`<p>Weather Error:No weather information found for "${cityName}", please try again </p>`);
                    
                     }else {
-                        $("#messageBox").html(`<p>Error: ${errorResp.responseJSON.message}</p>`);
+                        $("#messageBox").append(`<p>Weather Error: ${errorResp.responseJSON.message}, please try again</p>`);
                     }
                       
             })
@@ -166,15 +185,16 @@
          /* Clear divs*/
          $("#weatherData").empty();
          $("#venues").empty();
-         $("#venue1").html("");
-         $("#venue2").html("");
-         $("#venue3").html("");
-        /* Getting the input value to assign it to function*/
+          $("#messageBox").empty();
+         /* Getting the input value to assign it to function*/
          var cityName = $("#city").val();
          alert(cityName);
             if (cityName==="") {
-                 $("#messageBox").html(`<p>No input, please input destination</p>`);
-                 $("#apiDiv").css("visibility","hiden");
+                 $("#messageBox").html(`<p>No input, please type in the destination..</p>`);
+                 $("#weatherSection").empty();
+                 $("#venueSection").empty();
+                 $("#apiName").empty();
+                 
                    
             }else {
                  /*Calling the fetch API infomation with the argument value of cityName */
