@@ -122,7 +122,7 @@ var clientSecret ='4RPQ1PCFHSDS2YHADEMHE3VAYPTFQSHXL1IOP5IHTVODPKIC';
                              
                              then (function(data){
                                 var newWeather = data;
-                                var dailyData = newWeather.daily;
+                                
                                 showWeatherHTML(newWeather,weatherInfo);
                                 $("footer").css("position","relative")
 
