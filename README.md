@@ -14,7 +14,7 @@ The weather cards are aranged horizontaly in a row and  shows information about 
 The venue cards are arrange vertically in a column on the center of the screen and displays infomration about the venue name , icon  and the address in full with street name, post code , city and country. 
 
 All wireframes were executed with Balsamiq and can be seen here below. 
-![Desktop and Iphone image](assets/media/Traveller_website.png)
+![Desktop and Iphone image](assets/img/Traveller_website.png)
 
 ## Features
 
