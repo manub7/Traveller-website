@@ -11,6 +11,7 @@ In particular, as part of this section we recommend that you provide a list of U
 
 This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
 
+    ![Desktop and Iphone image](assets/media/Traveller_website.png)
 ## Features
 
 In this section, you should go over the different parts of your project, and describe each in a sentence or so.
@@ -73,6 +74,11 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 
 ## Credits
+[Mouse click event trigger](https://reactjs.org/docs/events.html#mouse-events) 
+[Capture id of and element](https://stackoverflow.com/questions/4384829/jquery-onclick-capture-the-id-of-the-element/39629863)
+[Display unix time stam in string format ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString)
+[Remove sensitive data ](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/removing-sensitive-data-from-a-repository)
+
 
 ### Content
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)

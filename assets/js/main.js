@@ -34,7 +34,7 @@ function showVenuesHTML(venues, venueName) {
         );
 
 
-        $("#venuePhoto").append(`<img src= ""/>`)
+      
     }
 
 }
@@ -59,7 +59,7 @@ function showWeatherHTML(venueSet1, venueSet2) {
         var day = new Date(d);
         var dayString = day.toLocaleDateString('en-GB', { weekday: "long" });
 
-        $("#weatherData").append(` <div class= "col-md margin">
+        $("#weatherData").append(` <div class= "col-md margin" id="weatherDiv">
                                           <img src="https://openweathermap.org/img/wn/${date.weather[0].icon}@2x.png"/>
                                           <h3>${temp}°C</h3>
                                           <h3>${cond}</h3>
