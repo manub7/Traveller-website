@@ -66,14 +66,13 @@ To run locally, you can clone this repository directly into the editor of your c
 
 ## Credits and Acknowledgements
 
-Handle mouse click event trigger with JavaScript [Mouse click event trigger](https://reactjs.org/docs/events.html#mouse-events) 
-How to capture item id [Capture id of and element](https://stackoverflow.com/questions/4384829/jquery-onclick-capture-the-id-of-the-element/39629863)
-Convert Unix timestamp into string[Display unix timestamp in string format ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString)
-How to remove sensitive data from Git [Remove sensitive data ](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/removing-sensitive-data-from-a-repository)
-The photo is provided by Pexels and you can find the link [here](https://www.pexels.com/photo/airplane-wing-towards-clouds-731217/)
-This website uses the Foursqure Places API to retrive data about the venues. You can find the link [here](https://developer.foursquare.com/docs/places-api/) 
-This website uses the Open weather API to retrive data about the weather forcast. You can find the link [here](https://openweathermap.org/forecast5)
-On how to get current data with JQuery, the link can be found [here](https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery)
+- Handle mouse click event trigger with JavaScript, the link can be found [here](https://reactjs.org/docs/events.html#mouse-events) 
+- How to capture item id  the link can be found [here](https://stackoverflow.com/questions/4384829/jquery-onclick-capture-the-id-of-the-element/39629863)
+- Convert Unix timestamp into string  the link can be found [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString)
+- How to remove sensitive data from Git  the link can be found [here](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/removing-sensitive-data-from-a-repository)
+- This website uses the Foursqure Places API to retrive data about the venues. You can find the link [here](https://developer.foursquare.com/docs/places-api/) 
+- This website uses the Open weather API to retrive data about the weather forcast. You can find the link [here](https://openweathermap.org/forecast5)
+- On how to get current data with JQuery, the link can be found [here](https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery)
 
 ### Media
 The photo is provided by Pexels and you can find the link [here](https://www.pexels.com/photo/airplane-wing-towards-clouds-731217/)
