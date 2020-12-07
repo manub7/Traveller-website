@@ -1,0 +1,8 @@
+
+var config = {
+    /*Venue API keys*/
+    clientId: 'XHDCHJITLFTCRQZUQ21NIUT3UX1INFWQCGICF25USP0IHXZO',
+    clientSecret: '4RPQ1PCFHSDS2YHADEMHE3VAYPTFQSHXL1IOP5IHTVODPKIC',
+    /* Weather API key*/
+    apiKey: "bd582b7a8caf8259d410f2f2bd53bf07",
+}

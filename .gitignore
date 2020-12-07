@@ -3,5 +3,4 @@ core.mongo*
 core.python*
 env.py
 __pycache__/
-*.py[cod]config.js
-config.js
+*.py[cod]
